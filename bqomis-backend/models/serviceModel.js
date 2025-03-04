@@ -6,7 +6,11 @@ const Service = {
     },
 
     getById: (serviceId, callback) => {
-        db.query('SELECT * FROM services WHERE service_id = ?', [serviceId], callback);
+        db.query('SELECT * FROM services WHERE id = ?', [serviceId], callback);
+    },
+
+    getByName: (serviceName, callback) => {
+        db.query('SELECT * FROM services WHERE name = ?', [serviceName], callback);
     },
 
     create: (serviceData, callback) => {
@@ -14,11 +18,11 @@ const Service = {
     },
 
     update: (serviceId, serviceData, callback) => {
-        db.query('UPDATE services SET ? WHERE service_id = ?', [serviceData, serviceId], callback);
+        db.query('UPDATE services SET ? WHERE id = ?', [serviceData, serviceId], callback);
     },
 
     delete: (serviceId, callback) => {
-        db.query('DELETE FROM services WHERE service_id = ?', [serviceId], callback);
+        db.query('DELETE FROM services WHERE id = ?', [serviceId], callback);
     }
 };
 
