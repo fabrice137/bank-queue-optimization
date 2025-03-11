@@ -1,24 +1,4 @@
-   
--------------------------------------
 
-    QUEUE
-    private String id;
-    private long averageServiceTime = 60000; // 1 min
-    private List<Slot> slotList;
-
--------------------------------------
-    SLOT
-    private long startTime;
-    private long endTime;
-    private String clientId;
-
-    private String slotId;
-    private boolean isSlotValid = true;
-
-
--------------------------------------
-
--------------------------------------
 -------------------------------------
 -------------------------------------
 -------------------------------------
@@ -48,8 +28,23 @@ iyo umu client aje kuri site:
 -- loop through appointments updating the matrix callendar boxes
 
 
+Test all the new routes
+
+next{
+    put it in App.js
+    make location components (east west north south kigali --> branches)
+    put arrows on services
+    make new landing page for admin
+    
+
+}
 
 
+
+
+
+TRY POSTGRESS AND NEON FREE TIER THAT'S GOOD
+https://neon.tech/pricing
 
 
 
@@ -58,3 +53,6 @@ Burera	Gisagara	Kicukiro	Ngororero	Nyanza	Rulindo
 Gakenke	Huye	Kirehe	Nyabihu	Nyarugenge	Rusizi
 Gasabo	Kamonyi	Muhanga	Nyagatare	Nyaruguru	Rutsiro
 Gatsibo	Karongi	Musanze	Nyamagabe	Rubavu	Rwamagana
+
+
+
