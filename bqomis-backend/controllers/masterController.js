@@ -1,6 +1,3 @@
-// # SELECT appointments WHERE branch_id AND service_id [FOR -3- BOTH KNOWN]
-// -- make 10 minutes matrix callendar as variable
-// -- loop through appointments updating the matrix callendar boxes
 
 const Service = require('../models/serviceModel');
 const appointmentController = require('./appointmentController');
@@ -13,10 +10,13 @@ function getAppointmentCalendar(branchName, serviceName){
     [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0]];
 
     appointments.forEach(appointment => {
-        let hour = appointment.appointment_time.split(':')[0];
+        let hour = parseInt(appointment.appointment_time.split(':')[0], 10);
         let minute = appointment.appointment_time.split(':')[1];
-        let tenMinutes = minute / 10;
-        calendar[hour][tenMinutes] += 1;
+        let tenMinutes = parseInt(minute / 10);
+        let shiftHour = hour - 9; // Assuming the shift starts at 9 AM
+        if (shiftHour >= 0 && shiftHour < 8) {
+            calendar[shiftHour][tenMinutes] += 1;
+        }
     });
 
     return calendar;
@@ -38,8 +38,11 @@ function getAppointmentsPerHourOnService(serviceName){
 
         let branchAppointments = appointmentController.getAppointmentsByBranchAndService(req, res);
         branchAppointments.forEach(appointment => {
-            let hour = appointment.appointment_time.split(':')[0];
-            appointmentsPerHour[hour] += 1;
+            let hour = parseInt(appointment.appointment_time.split(':')[0], 10);
+            let shiftHour = hour - 9; // Assuming the shift starts at 9 AM
+            if (shiftHour >= 0 && shiftHour < 8) {
+                appointmentsPerHour[shiftHour] += 1;
+            }
         });
     });
 
@@ -61,8 +64,11 @@ function getAppointmentsPerHourInDistrict(district) {
 
         let branchAppointments = appointmentController.getAppointmentsByBranchAndDate(req, res);
         branchAppointments.forEach(appointment => {
-            let hour = appointment.appointment_time.split(':')[0];
-            appointmentsPerHour[hour] += 1;
+            let hour = parseInt(appointment.appointment_time.split(':')[0], 10);
+            let shiftHour = hour - 9; // Assuming the shift starts at 9 AM
+            if (shiftHour >= 0 && shiftHour < 8) {
+                appointmentsPerHour[shiftHour] += 1;
+            }
         });
     });
 
